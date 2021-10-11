@@ -5,14 +5,14 @@ namespace Model\Entity;
 class Token extends Entity implements Interfaces\EntityInterface{
     private ?string $token;
     private ?int $validity;
-    private ?int $user_id;
+    private ?User $user;
 
     public function __construct(int $id = null, string $token = null, int $validity = null,
-        int $user_id = null)    {
+        User $user = null)    {
         parent::__construct($id);
         $this->setToken($token)
             ->setValidity($validity)
-            ->setUserId($user_id);
+            ->setUser($user);
     }
 
     /**
@@ -52,20 +52,20 @@ class Token extends Entity implements Interfaces\EntityInterface{
     }
 
     /**
-     * get the UserId
-     * @return int|null
+     * get the User
+     * @return User|null
      */
-    public function getUserId(): ?int    {
-        return $this->user_id;
+    public function getUser(): ?User    {
+        return $this->user;
     }
 
     /**
-     * set the UserId
-     * @param int|null $user_id
+     * set the User
+     * @param User|null $user
      * @return Token
      */
-    public function setUserId(?int $user_id): Token    {
-        $this->user_id = $user_id;
+    public function setUserId(?User $user): Token    {
+        $this->user_id = $user;
         return $this;
     }
 
@@ -73,7 +73,7 @@ class Token extends Entity implements Interfaces\EntityInterface{
         $array['id'] = $this->getId();
         $array['token'] = $this->getToken();
         $array['validity'] = $this->getValidity();
-        $array['user_id'] = $this->getUserId();
+        $array['user'] = $this->getUser()->getAllData();
         return $array;
     }
 }

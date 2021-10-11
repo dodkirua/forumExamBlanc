@@ -7,16 +7,16 @@ class User extends Entity implements Interfaces\EntityInterface{
     private ?string $mail;
     private ?string $pass;
     private ?int $checked_date;
-    private ?int $role_id;
+    private ?Role $role;
 
     public function __construct(int $id = null, string $username = null, string $mail = null,
-        string $pass = null, int $checked_date = null, int $role_id = null)    {
+        string $pass = null, int $checked_date = null, Role $role = null)    {
         parent::__construct($id);
         $this->setUsername($username)
             ->setMail($mail)
             ->setPass($pass)
             ->setCheckedDate($checked_date)
-            ->setRoleId($role_id);
+            ->setRole($role);
     }
 
     /**
@@ -92,20 +92,20 @@ class User extends Entity implements Interfaces\EntityInterface{
     }
 
     /**
-     * get the RoleId
-     * @return int|null
+     * get the Role
+     * @return Role|null
      */
-    public function getRoleId(): ?int    {
-        return $this->role_id;
+    public function getRole(): ?Role  {
+        return $this->role;
     }
 
     /**
-     * set the RoleId
-     * @param int|null $role_id
+     * set the Role
+     * @param Role|null $role
      * @return User
      */
-    public function setRoleId(?int $role_id): User    {
-        $this->role_id = $role_id;
+    public function setRole(?Role $role): User    {
+        $this->role = $role;
         return $this;
     }
 
@@ -115,7 +115,7 @@ class User extends Entity implements Interfaces\EntityInterface{
         $array['mail'] = $this->getMail();
         $array['pass'] = $this->getPass();
         $array['checked_date'] = $this->getCheckedDate();
-        $array['role_id'] = $this->getRoleId();
+        $array['role'] = $this->getRole()->getAllData();
         return $array;
     }
 }

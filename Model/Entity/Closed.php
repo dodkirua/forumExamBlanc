@@ -2,19 +2,16 @@
 
 namespace Model\Entity;
 
-class Remark extends Entity implements Interfaces\EntityInterface{
+class Closed extends Entity implements Interfaces\EntityInterface{
     private ?int $date;
-    private ?string $text;
-    private ?topic $topic;
+    private ?Topic $topic;
     private ?User $user;
 
-    public function __construct(int $id = null, int  $date = null, string $text = null,
-        Topic $topic = null, user $user = null)    {
+    public function __construct(int $id = null, int $date = null, Topic $topic = null, User $user =null)   {
         parent::__construct($id);
         $this->setDate($date)
-            ->setText($text)
-            ->setTopicId($topic)
-            ->setUserId($user);
+            ->setTopic($topic)
+            ->setUser($user);
     }
 
     /**
@@ -28,28 +25,10 @@ class Remark extends Entity implements Interfaces\EntityInterface{
     /**
      * set the Date
      * @param int|null $date
-     * @return Remark
+     * @return Closed
      */
-    public function setDate(?int $date): Remark    {
+    public function setDate(?int $date): Closed    {
         $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * get the Text
-     * @return string|null
-     */
-    public function getText(): ?string    {
-        return $this->text;
-    }
-
-    /**
-     * set the Text
-     * @param string|null $text
-     * @return Remark
-     */
-    public function setText(?string $text): Remark    {
-        $this->text = $text;
         return $this;
     }
 
@@ -64,9 +43,9 @@ class Remark extends Entity implements Interfaces\EntityInterface{
     /**
      * set the Topic
      * @param Topic|null $topic
-     * @return Remark
+     * @return Closed
      */
-    public function setTopicId(?Topic $topic): Remark    {
+    public function setTopic(?Topic $topic): Closed    {
         $this->topic = $topic;
         return $this;
     }
@@ -75,24 +54,24 @@ class Remark extends Entity implements Interfaces\EntityInterface{
      * get the User
      * @return User|null
      */
-    public function getUser(): ?User   {
+    public function getUser(): ?User    {
         return $this->user;
     }
 
     /**
      * set the User
      * @param User|null $user
-     * @return Remark
+     * @return Closed
      */
-    public function setUserId(?User $user): Remark    {
+    public function setUser(?User $user): Closed    {
         $this->user = $user;
         return $this;
     }
 
+
+
     public function getAllData(): array    {
         $array['id'] = $this->getId();
-        $array['date'] = $this->getDate();
-        $array['text'] = $this->getText();
         $array['topic'] = $this->getTopic()->getAllData();
         $array['user'] = $this->getUser()->getAllData();
         return $array;

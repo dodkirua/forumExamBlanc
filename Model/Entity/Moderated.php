@@ -4,17 +4,17 @@ namespace Model\Entity;
 
 class Moderated extends Entity implements Interfaces\EntityInterface{
     private ?int $date;
-    private ?int $remark_id;
+    private ?Remark $remark;
     private ?string $reason;
-    private ?int $user_id;
+    private ?User $user;
 
-    public function __construct(int $id = null, int $date = null, int $remark_id = null,
-    string $reason, int $user_id = null)    {
+    public function __construct(int $id = null, int $date = null, Remark $remark = null,
+    string $reason= null, User $user = null)    {
         parent::__construct($id);
         $this->setDate($date)
-            ->setRemarkId($remark_id)
+            ->setRemark($remark)
             ->setReason($reason)
-            ->setUserId($user_id);
+            ->setUser($user);
     }
 
     /**
@@ -37,19 +37,19 @@ class Moderated extends Entity implements Interfaces\EntityInterface{
 
     /**
      * get the RemarkId
-     * @return int|null
+     * @return Remark|null
      */
-    public function getRemarkId(): ?int    {
-        return $this->remark_id;
+    public function getRemark(): ?Remark    {
+        return $this->remark;
     }
 
     /**
      * set the RemarkId
-     * @param int|null $remark_id
+     * @param Remark|null $remark
      * @return Moderated
      */
-    public function setRemarkId(?int $remark_id): Moderated    {
-        $this->remark_id = $remark_id;
+    public function setRemark(?Remark $remark): Moderated    {
+        $this->remark = $remark;
         return $this;
     }
 
@@ -73,27 +73,27 @@ class Moderated extends Entity implements Interfaces\EntityInterface{
 
     /**
      * get the UserId
-     * @return int|null
+     * @return User|null
      */
-    public function getUserId(): ?int    {
-        return $this->user_id;
+    public function getUser(): ?User    {
+        return $this->user;
     }
 
     /**
      * set the UserId
-     * @param int|null $user_id
+     * @param User|null $user
      * @return Moderated
      */
-    public function setUserId(?int $user_id): Moderated    {
-        $this->user_id = $user_id;
+    public function setUser(?User $user): Moderated    {
+        $this->user = $user;
         return $this;
     }
 
     public function getAllData(): array    {
         $array['id'] = $this->getId();
         $array['date'] = $this->getDate();
-        $array['remark_id'] = $this->getRemarkId();
-        $array['user_id'] = $this->getUserId();
+        $array['remark'] = $this->getRemark()->getAllData();
+        $array['user'] = $this->getUser()->getAllData();
         return $array;
     }
 }

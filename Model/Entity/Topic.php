@@ -4,12 +4,12 @@ namespace Model\Entity;
 
 class Topic extends Entity implements Interfaces\EntityInterface{
     private ?string $name;
-    private ?int $cat_id;
+    private ?Category $cat;
 
-    public function __construct(int $id = null, string $name = null, int $cat_id = null)    {
+    public function __construct(int $id = null, string $name = null, Category $cat = null)    {
         parent::__construct($id);
         $this->setName($name);
-        $this->setCatId($cat_id);
+        $this->setCat($cat);
     }
 
     /**
@@ -31,27 +31,27 @@ class Topic extends Entity implements Interfaces\EntityInterface{
     }
 
     /**
-     * get the CatId
-     * @return int|null
+     * get the Cat
+     * @return Category|null
      */
-    public function getCatId(): ?int    {
-        return $this->cat_id;
+    public function getCat(): ?Category    {
+        return $this->cat;
     }
 
     /**
-     * set the CatId
-     * @param int|null $cat_id
+     * set the Cat
+     * @param Category|null $cat
      * @return Topic
      */
-    public function setCatId(?int $cat_id): Topic    {
-        $this->cat_id = $cat_id;
+    public function setCat(?Category $cat): Topic    {
+        $this->cat = $cat;
         return $this;
     }
 
     public function getAllData(): array    {
         $array['id'] = $this->getId();
         $array['name'] = $this->getName();
-        $array['cat_id'] = $this->getCatId();
+        $array['cat'] = $this->getCat()->getAllData();
         return $array;
     }
 }
