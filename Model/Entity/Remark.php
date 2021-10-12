@@ -9,7 +9,7 @@ class Remark extends Entity implements Interfaces\EntityInterface{
     private ?User $user;
 
     public function __construct(int $id = null, int  $date = null, string $text = null,
-        Topic $topic = null, user $user = null)    {
+        Topic $topic = null, User $user = null)    {
         parent::__construct($id);
         $this->setDate($date)
             ->setText($text)

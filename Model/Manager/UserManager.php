@@ -25,7 +25,7 @@ class UserManager extends Manager{
      * @param string $mail
      * @return User|null
      */
-    public static function getByUser(string $mail){
+    public static function getByMail(string $mail) : ?User{
         $request = DB::getInstance()->prepare("SELECT * FROM user where sd_mail = :mail");
         $request->bindValue(":mail",$mail);
         return self::getOne($request);
@@ -108,8 +108,8 @@ class UserManager extends Manager{
         $request->bindValue(":username",mb_strtolower($username));
         $request->bindValue(":mail",mb_strtolower($mail));
         $request->bindValue(':pass', $pass);
-        $request->bindValue(":date",intval($checked_date));
-        $request->bindValue(":role",intval($role_id));
+        $request->bindValue(":date", $checked_date);
+        $request->bindValue(":role", $role_id);
 
         return $request->execute();
     }
