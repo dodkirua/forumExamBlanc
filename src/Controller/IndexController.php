@@ -1,8 +1,7 @@
 <?php
 
-namespace Controller;
-
-use Controller\Classes\Controller;
+namespace Dodkirua\Forum\Controller;
+use Dodkirua\Forum\Controller\Controller;
 
 class IndexController extends Controller{
     /**

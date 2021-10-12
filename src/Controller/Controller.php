@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Controller\Classes;
+namespace Dodkirua\Forum\Controller;
 
 
 class Controller{

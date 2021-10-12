@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", E_ALL);
-require_once $_SERVER['DOCUMENT_ROOT'] . "/import.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 
 if (isset($_GET['ctrl'])) {
 

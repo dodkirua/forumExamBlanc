@@ -1,9 +1,9 @@
 <?php
 
-namespace Model\Manager;
+namespace Dodkirua\Forum\Model\Manager;
 
-use Model\DB;
-use Model\Entity\Remark;
+use Dodkirua\Forum\Model\DB;
+use Dodkirua\Forum\Model\Entity\Remark;
 use PDOStatement;
 
 class RemarkManager extends Manager{

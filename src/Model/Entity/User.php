@@ -1,6 +1,8 @@
 <?php
 
-namespace Model\Entity;
+namespace Dodkirua\Forum\Model\Entity;
+
+
 
 class User extends Entity implements Interfaces\EntityInterface{
     private ?string $username;

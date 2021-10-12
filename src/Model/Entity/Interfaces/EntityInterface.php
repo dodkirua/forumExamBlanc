@@ -1,5 +1,5 @@
 <?php
-namespace Model\Entity\Interfaces;
+namespace Dodkirua\Forum\Model\Entity\Interfaces;
 
 interface EntityInterface{
 

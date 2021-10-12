@@ -1,9 +1,9 @@
 <?php
 
-namespace Model\Manager;
+namespace Dodkirua\Forum\Model\Manager;
 
-use Model\DB;
-use Model\Entity\Category;
+use Dodkirua\Forum\Model\DB;
+use Dodkirua\Forum\Model\Entity\Category;
 use PDOStatement;
 
 class CategoryManager extends Manager{

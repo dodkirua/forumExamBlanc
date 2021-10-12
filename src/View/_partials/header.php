@@ -12,8 +12,8 @@
         $css = $var['css'] ?? 'principal';
         ?>
         <link rel="stylesheet" href="/assets/css/<?= $css ?>.css">
-        <link  rel= "shortcut icon"  href= "/Assets/img/standard/favicon.ico"  type= "image/x-icon" >
-        <link  rel= "icon"  href= "/Assets/img/standard/favicon.ico"  type= "image/x-icon" >
+        <link rel= "shortcut icon" href= "/Assets/img/standard/favicon.ico" type= "image/x-icon" >
+        <link rel= "icon" href= "/Assets/img/standard/favicon.ico" type= "image/x-icon" >
     </head>
     <body>
 

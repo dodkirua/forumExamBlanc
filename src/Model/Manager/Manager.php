@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Model\Manager;
+namespace Dodkirua\Forum\Model\Manager;
 
 
 class Manager{

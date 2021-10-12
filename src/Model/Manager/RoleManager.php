@@ -1,10 +1,11 @@
 <?php
 
-namespace Model\Manager;
+namespace Dodkirua\Forum\Model\Manager;
 
-use Model\DB;
-use Model\Entity\Role;
+use Dodkirua\Forum\Model\DB;
+use Dodkirua\Forum\Model\Entity\Role;
 use PDOStatement;
+
 
 class RoleManager extends Manager{
 

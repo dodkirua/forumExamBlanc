@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\Entity;
+namespace Dodkirua\Forum\Model\Entity;
 
 class Topic extends Entity implements Interfaces\EntityInterface{
     private ?string $name;

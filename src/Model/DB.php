@@ -1,5 +1,5 @@
 <?php
-namespace Model;
+namespace Dodkirua\Forum\Model;
 
 use PDO;
 use PDOException;

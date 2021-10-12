@@ -1,10 +1,10 @@
 <?php
 
-namespace Model\Manager;
+namespace DodkiDodkirua\Forum\rua\Forum\Model\Manager;
 
-use Model\DB;
-use Model\Entity\Role;
-use Model\Entity\User;
+use Dodkirua\Forum\Model\DB;
+use Dodkirua\Forum\Model\Entity\Role;
+use Dodkirua\Forum\Model\Entity\User;
 use PDOStatement;
 
 class UserManager extends Manager{
