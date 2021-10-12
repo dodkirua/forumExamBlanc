@@ -20,14 +20,14 @@ class ModeratedManager extends Manager{
     }
 
     /**
-     * return a Moderated by user_id
+     * return an array by user_id
      * @param int $user_id
-     * @return Moderated|null
+     * @return array
      */
-    public static function getByUser(int $user_id){
+    public static function getAllByUser(int $user_id): array{
         $request = DB::getInstance()->prepare("SELECT * FROM moderated where md_user_id = :user");
         $request->bindValue(":user",$user_id);
-        return self::getOne($request);
+        return self::getMany($request);
     }
 
     /**
@@ -36,15 +36,6 @@ class ModeratedManager extends Manager{
      */
     public static function getAll() : array {
         $request = DB::getInstance()->prepare("SELECT * FROM moderated");
-        return self::getMany($request);
-    }
-
-    /**
-     * return all moderated archived
-     * @return array
-     */
-    public static function getAllArchive() : array {
-        $request = DB::getInstance()->prepare("SELECT * FROM moderated WHERE md_archived = 1");
         return self::getMany($request);
     }
 
@@ -72,32 +63,35 @@ class ModeratedManager extends Manager{
         }
 
         $request = DB::getInstance()->prepare("UPDATE moderated
-                    SET md_name = :name, md_archived = :archive, md_description = :desc
+                    SET md_date = :date, md_remark_id = :remark, md_reason = :reason, md_user_id = :user
                     WHERE md_id = :id
                     ");
         $request->bindValue(":id",$id);
-        $request->bindValue(":name",mb_strtolower($var['name']));
-        $request->bindValue(":archive",intval($var['archived']));
-        $request->bindValue(':desc', mb_strtolower($var['description']));
+        $request->bindValue(":reason",mb_strtolower($var['reason']));
+        $request->bindValue(":date",intval($var['date']));
+        $request->bindValue(":remark",intval($var['remark_id']));
+        $request->bindValue(":user",intval($var['user_id']));
 
         return $request->execute();
     }
 
     /**
      * insert  in DB
-     * @param string $name
-     * @param string $description
-     * @param int $archive
+     * @param int $date
+     * @param int $remark_id
+     * @param string $reason
+     * @param int $user_id
      * @return bool
      */
-    public static function add(string $name, string $description, int $archive = 0) : bool {
+    public static function add(int $date, int $remark_id, string $reason, int $user_id) : bool {
         $request = DB::getInstance()->prepare("INSERT INTO moderated
-        (md_name, md_archived, md_description)
-        VALUES (:name, :archive, :desc)
+        (md_date, md_remark_id, md_reason, md_user_id)
+        VALUES (:date, :remark, :reason, :user)
         ");
-        $request->bindValue(":name",$name);
-        $request->bindValue(":archive",$archive);
-        $request->bindValue(":desc",$description);
+        $request->bindValue(":reason",mb_strtolower($reason));
+        $request->bindValue(":date", $date);
+        $request->bindValue(":remark", $remark_id);
+        $request->bindValue(":user", $user_id);
 
         return $request->execute();
     }
@@ -122,7 +116,9 @@ class ModeratedManager extends Manager{
         $request->execute();
         $data = $request->fetch();
         if ($data) {
-            return new Moderated(intval($data['md_id']), $data['md_name'], $data['md_archived'], $data['md_description']);
+            $remark = RemarkManager::getById($data['md_remark_id']);
+            $user = UserManager::getById($data['md_user_id']);
+            return new Moderated(intval($data['md_id']), $data['md_date'],$remark, $data['md_reason'], $user);
         }
         return null;
     }
@@ -139,7 +135,9 @@ class ModeratedManager extends Manager{
             $datum = $request->fetchAll();
             if ($datum) {
                 foreach ($datum as $data) {
-                    $item = new Moderated(intval($data['md_id']), $data['md_name'], $data['md_archived'], $data['md_description']);
+                    $remark = RemarkManager::getById($data['md_remark_id']);
+                    $user = UserManager::getById($data['md_user_id']);
+                    $item = new Moderated(intval($data['md_id']), $data['md_date'],$remark, $data['md_reason'], $user);
                     $array[] = $item;
                 }
             }
