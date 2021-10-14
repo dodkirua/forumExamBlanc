@@ -57,10 +57,13 @@ class TopicManager extends Manager{
      * @return bool
      */
     public static function update(int $id, array $var = null) : bool{
-        if (is_null($var['name']) || is_null($var['cat_id']) ) {
+        if (is_null($var['name']) || is_null($var['cat_id']) || is_null($var['description']) ) {
             $data = self::getById($id);
             if (is_null($var['name'])) {
                 $var['name'] = $data->getName();
+            }
+            if (is_null($var['description'])){
+                $var['description'] = $data->getDescription();
             }
             if (is_null($var['cat_id']) ) {
                 $var['cat_id'] = $data->getCat()->getId();
@@ -68,11 +71,12 @@ class TopicManager extends Manager{
         }
 
         $request = DB::getInstance()->prepare("UPDATE topic
-                    SET tp_name = :name, tp_cat_id = :cat
+                    SET tp_name = :name, tp_description = :desc ,tp_cat_id = :cat 
                     WHERE tp_id = :id
                     ");
         $request->bindValue(":id",$id);
         $request->bindValue(":name",mb_strtolower($var['name']));
+        $request->bindValue(":desc",mb_strtolower($var['description']));
         $request->bindValue(":cat",intval($var['cat_id']));
 
         return $request->execute();
@@ -81,15 +85,17 @@ class TopicManager extends Manager{
     /**
      * insert  in DB
      * @param string $name
+     * @param string $description
      * @param int $category_id
      * @return bool
      */
-    public static function add(string $name, int $category_id) : bool {
+    public static function add(string $name,string $description, int $category_id) : bool {
         $request = DB::getInstance()->prepare("INSERT INTO topic
-        (tp_name, tp_cat_id)
-        VALUES (:name, :cat)
+        (tp_name, tp_description, tp_cat_id)
+        VALUES (:name, :desc, :cat)
         ");
-        $request->bindValue(":name",$name);
+        $request->bindValue(":name",mb_strtolower($name));
+        $request->bindValue(":desc",mb_strtolower($description));
         $request->bindValue(":cat",$category_id);
 
         return $request->execute();
@@ -116,7 +122,7 @@ class TopicManager extends Manager{
         $data = $request->fetch();
         if ($data) {
             $cat = CategoryManager::getById($data['tp_cat_id']);
-            return new Topic(intval($data['tp_id']), $data['tp_name'], $cat);
+            return new Topic(intval($data['tp_id']), $data['tp_name'], $data['description'] , $cat);
         }
         return null;
     }
@@ -134,7 +140,7 @@ class TopicManager extends Manager{
             if ($datum) {
                 foreach ($datum as $data) {
                     $cat = CategoryManager::getById($data['tp_cat_id']);
-                    $item = new Topic(intval($data['tp_id']), $data['tp_name'], $cat);
+                    $item = new Topic(intval($data['tp_id']), $data['tp_name'], $data['description'] , $cat);
                     $array[] = $item;
                 }
             }

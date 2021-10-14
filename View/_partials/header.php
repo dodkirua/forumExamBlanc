@@ -1,4 +1,6 @@
-<?php session_start() ?>
+<?php session_start()
+/* @var string $title v r with title for the header*/
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,11 +13,11 @@
         <?php
         $css = $var['css'] ?? 'principal';
         ?>
-        <link rel="stylesheet" href="/assets/css/<?= $css ?>.css">
+        <link rel="stylesheet" href="/Assets/css/<?= $css ?>.css">
         <link rel= "shortcut icon" href= "/Assets/img/standard/favicon.ico" type= "image/x-icon" >
         <link rel= "icon" href= "/Assets/img/standard/favicon.ico" type= "image/x-icon" >
     </head>
     <body>
 
     <div id="container">
-        <div id="principal"><?php
+        <?php

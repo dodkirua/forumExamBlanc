@@ -1,6 +1,6 @@
 <?php
 
-namespace DodkiDodkirua\Forum\rua\Forum\Model\Manager;
+namespace Dodkirua\Forum\Model\Manager;
 
 use Dodkirua\Forum\Model\DB;
 use Dodkirua\Forum\Model\Entity\Role;

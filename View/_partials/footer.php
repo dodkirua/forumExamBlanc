@@ -6,6 +6,7 @@
 </div>
 </div>
 <?php
+/* @var string $view  name of view to call*/
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/assets/js/" . $view . ".js")){ ?>
     <script src="/assets/js/<?= $view ?>.js" type="module"></script> <?php
 }

@@ -4,12 +4,33 @@ namespace Dodkirua\Forum\Model\Entity;
 
 class Topic extends Entity implements Interfaces\EntityInterface{
     private ?string $name;
+    private ?string $description;
     private ?Category $cat;
 
-    public function __construct(int $id = null, string $name = null, Category $cat = null)    {
+    public function __construct(int $id = null, string $name = null,string $description = null,
+                                Category $cat = null)    {
         parent::__construct($id);
-        $this->setName($name);
-        $this->setCat($cat);
+        $this->setName($name)
+            ->setDescription($description)
+            ->setCat($cat);
+    }
+
+    /**
+     * get the Description
+     * @return string|null
+     */
+    public function getDescription(): ?string    {
+        return $this->description;
+    }
+
+    /**
+     * set the Description
+     * @param string|null $description
+     * @return Topic
+     */
+    public function setDescription(?string $description): Topic    {
+        $this->description = $description;
+        return $this;
     }
 
     /**
@@ -51,6 +72,7 @@ class Topic extends Entity implements Interfaces\EntityInterface{
     public function getAllData(): array    {
         $array['id'] = $this->getId();
         $array['name'] = $this->getName();
+        $array['description'] = $this->getDescription();
         $array['cat'] = $this->getCat()->getAllData();
         return $array;
     }
