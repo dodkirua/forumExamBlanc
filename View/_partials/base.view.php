@@ -1,10 +1,9 @@
 <?php
 include './View/_partials/header.php';
-include './View/_partials/menu.php';
 if (isset($var['title'])){
     echo "<h1>" . $var['title'] . "</h1>";
 }
-
+include './View/_partials/menu.php';
 /* @var string $html value of render of controller */
 ?>
 <div id="principal">

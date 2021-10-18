@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.subject{
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(15,0,255,.2);
+    padding: 0.5rem;
+}
+
+.subjectTitle {
+    margin: 1rem 0 1rem 2rem;
+    text-transform: uppercase;
+
+}
+.subjectTitle span{
+    padding-left: 2rem;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.subjectTitle a {
+    color: darkblue;
+}
+
+.topicParent{
+    margin-left: 3rem;
+}
+
+.topic {
+    margin: 0.5rem 0 0.5rem 0;
+}

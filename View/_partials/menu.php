@@ -7,7 +7,7 @@
     if (isset($_SESSION['account']['id'])) {
         echo "<div id='accountLink'>";
         echo "<a href='/index.php?ctrl=account'>Votre compte</a>";
-        echo "<a href='/index.php?ctrl=disconnect'>Déconnections</a>";
+        echo "<a href='/index.php?ctrl=disconnect'>Déconnection</a>";
     }
     else {
         echo "

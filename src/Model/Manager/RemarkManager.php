@@ -30,6 +30,17 @@ class RemarkManager extends Manager{
     }
 
     /**
+     * return all Remark by topic
+     * @param int $topic_id
+     * @return array|null
+     */
+    public static function getAllByTopic(int $topic_id): ?array    {
+        $request = DB::getInstance()->prepare("SELECT * FROM remark where rm_topic_id = :topic");
+        $request->bindValue(":topic", $topic_id);
+        return self::getMany($request);
+    }
+
+    /**
      * return an array with all the Remark
      * @return array
      */

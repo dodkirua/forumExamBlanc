@@ -1,11 +1,15 @@
 
-<div class="chat">
+<div class="registration">
     <h1>enregistrez vous</h1>
     <form action="/index.php?ctrl=form&action=registration" id="registration" method="post">
     <div>
         <div class="form">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form">
+            <label for="mail">Mail</label>
+            <input type="email" name="mail" id="mail" required>
         </div>
         <div class="form">
             <label for="pass">PassWord</label>

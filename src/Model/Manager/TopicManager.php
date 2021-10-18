@@ -140,7 +140,7 @@ class TopicManager extends Manager{
             if ($datum) {
                 foreach ($datum as $data) {
                     $cat = CategoryManager::getById($data['tp_cat_id']);
-                    $item = new Topic(intval($data['tp_id']), $data['tp_name'], $data['description'] , $cat);
+                    $item = new Topic(intval($data['tp_id']), $data['tp_name'], $data['tp_description'] , $cat);
                     $array[] = $item;
                 }
             }
